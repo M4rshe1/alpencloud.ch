@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Menu, X } from "lucide-react";
 import {
     NavigationMenu,
@@ -12,12 +12,14 @@ import {
     NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { HEADER_LINKS } from "@/lib/settings/header-links";
+import Banners from "@/components/banners";
 
 const Header = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     return (
         <nav className="fixed w-full z-50 bg-gray-900/80 backdrop-blur-lg border-b border-red-500/20">
+            <Banners/>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16">
                     <div className="flex items-center">

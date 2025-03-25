@@ -1,9 +1,14 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import {BANNERS} from "@/lib/settings/banners";
 
 const Hero = () => {
     return (
-        <div className="relative overflow-hidden h-screen" id={"hero"}>
+        <div className="relative overflow-hidden" id={"hero"}
+             style={{
+                 height: `calc(100vh - ${BANNERS.length * 36}px)`,
+             }}
+        >
             <div
                 className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1454496522488-7a8e488e8606?w=2000')] bg-cover bg-center after:content-[''] after:absolute after:inset-x-0 after:bottom-0 after:h-1/3 after:bg-gradient-to-t after:from-black after:to-transparent"
                 style={{

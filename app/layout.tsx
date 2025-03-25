@@ -4,6 +4,8 @@ import {Inter} from 'next/font/google';
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import React from "react";
+import Banners from "@/components/banners";
+import {BANNERS} from "@/lib/settings/banners";
 
 const inter = Inter({subsets: ['latin']});
 
@@ -22,6 +24,7 @@ export default async function RootLayout({
         <html lang="en">
         <body className={`${inter.className} bg-gray-900 text-white`}>
         <Header/>
+        <div style={{height: `${BANNERS.length * 36}px`}}/>
         <main
             className="min-h-screen bg-gradient-to-br from-gray-900 via-red-900 to-gray-900 [&:has(>#hero:first-child)]:pt-16 [&:not(:has(>#hero:first-child))]:pt-24 pb-20 [&:not(:has(>#hero:first-child))]:px-4">
             {children}
