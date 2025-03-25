@@ -45,10 +45,11 @@ export const Plans = ({service, annual}: { service: Service, annual: boolean }) 
                 </div>
             )}
 
-            <div className="flex flex-wrap justify-center gap-8 mb-20">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20"
+                 style={{gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))'}}>
                 {
                     service.packages.map((plan) => (
-                        <div key={plan.name} className="flex-grow min-w-[300px] max-w-[400px]">
+                        <div key={plan.name} className="w-full">
                             <Plan
                                 plan={plan}
                                 annual={isAnnual || service.type === 'yearly' ? true : isAnnual}
