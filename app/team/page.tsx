@@ -1,8 +1,9 @@
 "use client";
 
-import {TEAM} from "@/lib/settings";
+import {TEAM} from "@/lib/settings/team";
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Team() {
   return (
@@ -16,30 +17,27 @@ export default function Team() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="flex flex-wrap justify-center gap-8 mb-20">
           {
             TEAM.map((member, index) => (
                 <div
                     key={index}
-                    className="p-6 rounded-2xl bg-gray-800/50 backdrop-blur-lg border border-red-500/20 shadow-[0_0_15px_rgba(220,38,38,0.2)]">
+                    className="p-6 rounded-2xl bg-gray-800/50 backdrop-blur-lg border border-red-500/20 shadow-[0_0_15px_rgba(220,38,38,0.2)] flex-grow min-w-[300px] max-w-[400px]">
                   <Image
                       width={1080}
                       height={1080}
                       src={member.image}
                       alt={member.name}
-                      className="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-2 border-red-400"
+                      className="w-64 h-64 rounded-full mx-auto mb-4 object-cover border-2 border-red-400"
                   />
                   <h3 className="text-xl font-semibold text-white text-center mb-2">{member.name}</h3>
                   <p className="text-red-400 text-center mb-4">{member.role}</p>
-                  <p className="text-gray-400 text-center mb-6">
-                    {member.description}
-                  </p>
                   <div className="flex justify-center space-x-4">
                     {
                       member.socials.map((social, index) => (
-                            <a key={index} href={social.href} className="text-gray-400 hover:text-red-400 transition-colors">
+                            <Link target={"_blank"} key={index} href={social.href} className="text-gray-400 hover:text-red-400 transition-colors">
                                 <social.icon className="w-5 h-5"/>
-                            </a>
+                            </Link>
                       ))
                     }
                   </div>

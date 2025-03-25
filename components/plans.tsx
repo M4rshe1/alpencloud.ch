@@ -1,7 +1,7 @@
 "use client";
 
 import {Check} from "lucide-react";
-import {Service, ServicePackage} from "@/lib/settings";
+import {Service, ServicePackage} from "@/lib/settings/services";
 import {cn} from "@/lib/utils";
 import {useState} from "react";
 import Link from "next/link";

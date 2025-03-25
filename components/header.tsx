@@ -11,7 +11,7 @@ import {
     NavigationMenuList,
     NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import { HEADER_LINKS } from "@/lib/settings";
+import { HEADER_LINKS } from "@/lib/settings/header-links";
 
 const Header = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
