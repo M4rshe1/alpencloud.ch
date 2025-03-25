@@ -21,7 +21,7 @@ export const HEADER_LINKS = [
             {
                 title: "FAQ",
                 description: "Häufig gestellte Fragen und Antworten",
-                icon: Shield,
+                icon: MessageCircleQuestion,
                 href: "/faq"
             }
         ]
