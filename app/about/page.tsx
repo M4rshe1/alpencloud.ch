@@ -4,7 +4,6 @@ import { Building2, Users, Globe2 } from "lucide-react";
 
 export default function About() {
   return (
-    <main className="min-h-screen bg-gradient-to-br from-gray-900 via-red-900 to-gray-900 py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* About Hero */}
         <div className="text-center mb-16">
@@ -47,7 +46,7 @@ export default function About() {
             <Users className="h-10 w-10 text-red-400 mb-4" />
             <h3 className="text-xl font-semibold text-white mb-3">Customer First</h3>
             <p className="text-gray-400">
-              Our success is measured by our customers' success. We provide personalized support and solutions for every client.
+              Our success is measured by our customers&#39; success. We provide personalized support and solutions for every client.
             </p>
           </div>
 
@@ -55,11 +54,10 @@ export default function About() {
             <Globe2 className="h-10 w-10 text-red-400 mb-4" />
             <h3 className="text-xl font-semibold text-white mb-3">Sustainability</h3>
             <p className="text-gray-400">
-              We're committed to sustainable hosting practices, using renewable Alpine energy in our data centers.
+              We&#39;re committed to sustainable hosting practices, using renewable Alpine energy in our data centers.
             </p>
           </div>
         </div>
       </div>
-    </main>
   );
 }
