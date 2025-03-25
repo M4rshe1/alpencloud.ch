@@ -26,6 +26,7 @@ export default function About() {
             <div className="text-4xl font-bold text-red-400 mb-2">1000+</div>
             <div className="text-gray-300">Happy Customers</div>
           </div>
+
           <div className="p-6 rounded-2xl bg-gray-800/50 backdrop-blur-lg border border-red-500/20 shadow-[0_0_15px_rgba(220,38,38,0.2)] text-center">
             <div className="text-4xl font-bold text-red-400 mb-2">24/7</div>
             <div className="text-gray-300">Support Available</div>
@@ -41,7 +42,7 @@ export default function About() {
               We maintain the highest standards in hosting infrastructure and customer service, embodying Swiss precision and reliability.
             </p>
           </div>
-          
+
           <div className="p-8 rounded-2xl bg-gray-800/30 backdrop-blur-lg">
             <Users className="h-10 w-10 text-red-400 mb-4" />
             <h3 className="text-xl font-semibold text-white mb-3">Customer First</h3>
@@ -49,7 +50,7 @@ export default function About() {
               Our success is measured by our customers' success. We provide personalized support and solutions for every client.
             </p>
           </div>
-          
+
           <div className="p-8 rounded-2xl bg-gray-800/30 backdrop-blur-lg">
             <Globe2 className="h-10 w-10 text-red-400 mb-4" />
             <h3 className="text-xl font-semibold text-white mb-3">Sustainability</h3>

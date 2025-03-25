@@ -7,11 +7,11 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-gradient-to-br from-gray-900 via-red-900 to-gray-900">
       {/* Hero Section */}
-      <div className="relative overflow-hidden">
+      <div className="relative overflow-hidden h-screen">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1454496522488-7a8e488e8606?w=2000')] bg-cover bg-center opacity-10" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-32">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-32 flex items-center justify-center h-full">
           <div className="text-center relative z-10">
-            <h1 className="text-5xl md:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-orange-300 mb-6">
+            <h1 className="text-5xl md:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-orange-300 pb-6">
               Alpine Excellence in WordPress Hosting
             </h1>
             <p className="text-gray-300 text-xl md:text-2xl max-w-3xl mx-auto mb-10">
