@@ -1,15 +1,10 @@
 "use client";
 
-import {useState, useMemo} from "react";
-import {SERVICES, Service, ServicePackage} from "@/lib/settings/services";
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-} from "@/components/ui/select";
+import {useMemo, useState} from "react";
+import {Service, ServicePackage, SERVICES} from "@/lib/settings/services";
+import {Select, SelectContent, SelectItem, SelectTrigger,} from "@/components/ui/select";
 import {Button} from "@/components/ui/button"; // Import Button component
-import {RotateCcw} from "lucide-react"; // Import an icon for the button
+import {RotateCcw, Send} from "lucide-react"; // Import an icon for the button
 
 // Interface remains the same
 interface SelectedPackage extends ServicePackage {
@@ -55,10 +50,9 @@ export function PlanCombiner() {
 
     // --- Reset Handler ---
     const handleReset = () => {
-        setSelectedPackages([]); // Clear the selected packages state
+        setSelectedPackages([]);
     };
 
-    // Calculation logic remains the same
     const {
         totalMonthlyCost,
         totalYearlyCost,
@@ -93,6 +87,61 @@ export function PlanCombiner() {
         };
     }, [selectedPackages]);
 
+    const handleSendInquiry = () => {
+        const recipientEmail = "info@alpencloud.ch";
+
+        const subject = "Anfrage: Individuelles Service-Paket";
+
+        let body =
+            "Hallo,\n\n" +
+            "ich interessiere mich für folgendes individuell zusammengestelltes Service-Paket:\n\n";
+
+        selectedPackages.forEach((pkg) => {
+            const service = SERVICES.find((s) => s.id === pkg.serviceId);
+            body += `- ${service?.name || "Unbekannter Service"} - ${
+                pkg.name
+            }: ${formatCurrency(pkg.price)}`;
+            if (pkg.serviceType === "monthly") body += "/Monat";
+            if (pkg.serviceType === "yearly") body += "/Jahr";
+            if (pkg.serviceType === "one-time") body += " einmalig";
+            if (pkg.setupFee && pkg.setupFee > 0) {
+                body += ` (+ ${formatCurrency(pkg.setupFee)} Setup)`;
+            }
+            body += "\n";
+        });
+
+        body += "\n--- Zusammenfassung der Kosten ---\n";
+        if (totalSetupFees > 0 || totalOneTimeCosts > 0) {
+            body += `Einmalige Kosten gesamt: ${formatCurrency(
+                totalSetupFees + totalOneTimeCosts,
+            )}\n`;
+            if (totalSetupFees > 0) {
+                body += `  (davon Setup: ${formatCurrency(totalSetupFees)})\n`;
+            }
+            if (totalOneTimeCosts > 0) {
+                body += `  (davon einmalige Services: ${formatCurrency(
+                    totalOneTimeCosts,
+                )})\n`;
+            }
+        }
+        body += `Effektive monatliche Kosten: ${formatCurrency(
+            totalMonthlyCost,
+        )} / Monat\n`;
+        body += `Effektive jährliche Kosten: ${formatCurrency(
+            totalYearlyCost,
+        )} / Jahr\n`;
+
+        body +=
+            "\nBitte kontaktieren Sie mich bezüglich dieser Auswahl oder senden Sie mir ein unverbindliches Angebot.\n\n" +
+            "Mit freundlichen Grüßen,\n\n" +
+            "[Ihr Name hier]\n" +
+            "[Ihre Kontaktdaten hier]";
+
+        window.location.href = `mailto:${recipientEmail}?subject=${encodeURIComponent(
+            subject,
+        )}&body=${encodeURIComponent(body)}`;
+    };
+
     const formatCurrency = (amount: number) => {
         return amount.toLocaleString("de-CH", {
             style: "currency",
@@ -103,7 +152,7 @@ export function PlanCombiner() {
     };
 
     return (
-        <div className="mt-20 pt-10 mb-8">
+        <div>
             <h2 className="text-3xl font-bold text-white text-center mb-10">
                 Stellen Sie Ihre Pläne zusammen
             </h2>
@@ -112,10 +161,8 @@ export function PlanCombiner() {
                 Dropdown-Menü, um Ihr individuelles Bundle zu erstellen.
             </p>
 
-            {/* Service Selection Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
                 {" "}
-                {/* Reduced bottom margin */}
                 {SERVICES.map((service) => {
                     const currentSelection = selectedPackages.find(
                         (p) => p.serviceId === service.id,
@@ -174,30 +221,26 @@ export function PlanCombiner() {
                 })}
             </div>
 
-            {/* --- Reset Button --- */}
-            {selectedPackages.length > 0 && ( // Only show if selections exist
+            {selectedPackages.length > 0 && (
                 <div className="text-center mb-12">
                     {" "}
-                    {/* Added margin bottom */}
                     <Button
-                        variant="destructive" // Use a destructive variant for reset
+                        variant="destructive"
                         onClick={handleReset}
                         className="bg-red-600 hover:bg-red-700 text-white"
                     >
-                        <RotateCcw className="mr-2 h-4 w-4"/> {/* Icon */}
+                        <RotateCcw className="mr-2 h-4 w-4"/>
                         Auswahl zurücksetzen
                     </Button>
                 </div>
             )}
 
-            {/* --- Improved Summary Section --- */}
             {selectedPackages.length > 0 && (
                 <div className="bg-gray-900 p-8 rounded-lg shadow-xl border border-gray-700">
                     <h3 className="text-2xl font-semibold text-white mb-6 text-center">
                         Zusammenfassung Ihres individuellen Pakets
                     </h3>
 
-                    {/* Itemized List */}
                     <div className="space-y-3 mb-6 border-b border-gray-700 pb-6">
                         {selectedPackages.map((pkg) => {
                             const service = SERVICES.find((s) => s.id === pkg.serviceId);
@@ -225,7 +268,6 @@ export function PlanCombiner() {
                         })}
                     </div>
 
-                    {/* Totals Section - Table-like Layout */}
                     <div className="space-y-3">
                         <h4 className="text-xl font-semibold text-white mb-4 text-center">
                             Gesamtkosten
@@ -271,6 +313,18 @@ export function PlanCombiner() {
                             <span className="font-bold">
                 {formatCurrency(totalYearlyCost)} / Jahr
               </span>
+                        </div>
+                        <div
+                            className={`flex items-center justify-end`}
+                        >
+                            <Button
+                                variant="destructive"
+                                onClick={handleSendInquiry}
+                                className="bg-red-600 hover:bg-red-700 text-white mt-6 flex items-center justify-center"
+                            >
+                                <Send className={"mr-2 h-4 w-4"}/>
+                                Unverbindliche Anfrage senden
+                            </Button>
                         </div>
                         <p className="text-sm text-gray-400 pt-4 text-center">
                             Hinweis: Monatliche Kosten sind Schätzungen (inkl. anteiliger
