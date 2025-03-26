@@ -17,6 +17,7 @@ import {Input} from "@/components/ui/input";
 import {Textarea} from "@/components/ui/textarea";
 import {Button} from "@/components/ui/button";
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select";
+import Link from "next/link";
 
 const formSchema = z.object({
     name: z.string().min(2, "Name must be at least 2 characters"),
@@ -63,22 +64,26 @@ export default function Support() {
                     className="p-6 rounded-2xl bg-gray-800/50 backdrop-blur-lg border border-red-500/20 shadow-[0_0_15px_rgba(220,38,38,0.2)]">
                     <HeadphonesIcon className="h-8 w-8 text-red-400 mb-4"/>
                     <h3 className="text-xl font-semibold text-white mb-2">24/7 Support</h3>
-                    <p className="text-gray-400">Our team is available around the clock to assist you with any
-                        issues.</p>
+                    <p className="text-gray-400">
+                        Unser Teams steht ihnen jederzeit zur Verfügung, um Ihre Fragen zu beantworten.
+                    </p>
                 </div>
 
                 <div
                     className="p-6 rounded-2xl bg-gray-800/50 backdrop-blur-lg border border-red-500/20 shadow-[0_0_15px_rgba(220,38,38,0.2)]">
                     <MailIcon className="h-8 w-8 text-red-400 mb-4"/>
                     <h3 className="text-xl font-semibold text-white mb-2">Email Support</h3>
-                    <p className="text-gray-400">support@alpencloud.ch</p>
+                    <a href={"mailto:support@alpencloud.ch"} className="hover:underlined text-red-400">support@alpencloud.ch</a>
                 </div>
 
                 <div
                     className="p-6 rounded-2xl bg-gray-800/50 backdrop-blur-lg border border-red-500/20 shadow-[0_0_15px_rgba(220,38,38,0.2)]">
                     <Clock className="h-8 w-8 text-red-400 mb-4"/>
-                    <h3 className="text-xl font-semibold text-white mb-2">Response Time</h3>
-                    <p className="text-gray-400">Average response time under 5 minutes</p>
+                    <h3 className="text-xl font-semibold text-white mb-2">Antwort Zeit</h3>
+                    <p className="text-gray-400">
+                        Wir antworten auf Ihre Anfrage innerhalb von 2 Arbeitstagen.
+                        Für schnelleren Support ist ein <Link href={"/services#support"} className={"hover:underlined text-red-400"}>Support Upgrade</Link> nötig.
+                    </p>
                 </div>
             </div>
 
@@ -89,9 +94,9 @@ export default function Support() {
                     {isSubmitted ? (
                         <div className="text-center py-8">
                             <CheckCircle2 className="h-16 w-16 text-red-400 mx-auto mb-4"/>
-                            <h3 className="text-2xl font-semibold text-white mb-2">Thank You!</h3>
+                            <h3 className="text-2xl font-semibold text-white mb-2">Vielen Dank</h3>
                             <p className="text-gray-400">
-                                We've received your message and will get back to you shortly.
+                               Wir haben Ihre Nachricht erhalten und werden uns in Kürze bei Ihnen melden.
                             </p>
                             <Button
                                 className="mt-6 bg-red-600 hover:bg-red-700"
@@ -100,14 +105,14 @@ export default function Support() {
                                     form.reset();
                                 }}
                             >
-                                Send Another Message
+                                Eine weitere Nachricht senden
                             </Button>
                         </div>
                     ) : (
                         <>
                             <div className="flex items-center gap-3 mb-6">
                                 <MessageSquare className="h-6 w-6 text-red-400"/>
-                                <h2 className="text-2xl font-semibold text-white">Contact Us</h2>
+                                <h2 className="text-2xl font-semibold text-white">Kontaktieren sie uns</h2>
                             </div>
 
                             <Form {...form}>
@@ -154,7 +159,7 @@ export default function Support() {
                                         name="subject"
                                         render={({field}) => (
                                             <FormItem>
-                                                <FormLabel className="text-white">Subject</FormLabel>
+                                                <FormLabel className="text-white">Betreff</FormLabel>
                                                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                                                     <FormControl>
                                                         <SelectTrigger
@@ -190,7 +195,7 @@ export default function Support() {
                                         name="message"
                                         render={({field}) => (
                                             <FormItem>
-                                                <FormLabel className="text-white">Message</FormLabel>
+                                                <FormLabel className="text-white">Nachricht</FormLabel>
                                                 <FormControl>
                                                     <Textarea
                                                         placeholder="How can we help you?"
@@ -208,7 +213,7 @@ export default function Support() {
                                         className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg flex items-center justify-center gap-2"
                                     >
                                         <Send className="h-5 w-5"/>
-                                        Send Message
+                                        Nachricht senden
                                     </Button>
                                 </form>
                             </Form>
