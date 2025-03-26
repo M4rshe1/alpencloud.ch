@@ -54,6 +54,7 @@ export const Plans = ({service, annual}: { service: Service, annual: boolean }) 
                                 plan={plan}
                                 annual={isAnnual || service.type === 'yearly' ? true : isAnnual}
                                 oneTime={service.type === 'one-time'}
+                                yearly={service.type === 'yearly'}
                             />
                         </div>
                     ))
@@ -63,8 +64,8 @@ export const Plans = ({service, annual}: { service: Service, annual: boolean }) 
     )
 }
 
-const Plan = ({plan, annual, oneTime}: { plan: ServicePackage, annual: boolean, oneTime: boolean }) => {
-    const price = formatPrice(annual
+const Plan = ({plan, annual, oneTime, yearly}: { plan: ServicePackage, annual: boolean, oneTime: boolean, yearly: boolean }) => {
+    const price = yearly ? plan.price : formatPrice(annual
         ? plan.price * 12 * (1 - (plan.annualDiscount ?? 0))
         : plan.price);
 
@@ -88,7 +89,7 @@ const Plan = ({plan, annual, oneTime}: { plan: ServicePackage, annual: boolean, 
                         className={"flex items-start justify-center flex-col text-xs text-gray-300 font-normal ml-1"}>
 
                         {price !== "0" && <span>CHF</span>}
-                        {!oneTime && !price &&
+                        {!oneTime && price !== "0" &&
                             <span>{annual ? "/Jahr" : "/Monat"}</span>
                         }
                     </div>

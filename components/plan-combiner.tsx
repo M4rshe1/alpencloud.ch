@@ -1,15 +1,15 @@
 "use client";
 
-import { useState, useMemo } from "react";
-import { SERVICES, Service, ServicePackage } from "@/lib/settings/services";
+import {useState, useMemo} from "react";
+import {SERVICES, Service, ServicePackage} from "@/lib/settings/services";
 import {
     Select,
     SelectContent,
     SelectItem,
     SelectTrigger,
 } from "@/components/ui/select";
-import { Button } from "@/components/ui/button"; // Import Button component
-import { RotateCcw } from "lucide-react"; // Import an icon for the button
+import {Button} from "@/components/ui/button"; // Import Button component
+import {RotateCcw} from "lucide-react"; // Import an icon for the button
 
 // Interface remains the same
 interface SelectedPackage extends ServicePackage {
@@ -130,7 +130,7 @@ export function PlanCombiner() {
                             className="p-6 rounded-xl bg-gray-800/50 backdrop-blur-lg border border-red-500/20 shadow-[0_0_15px_rgba(220,38,38,0.2)] relative flex flex-col h-full"
                         >
                             <h3 className="text-xl font-semibold text-white mb-4 flex items-center">
-                                <service.icon className="w-5 h-5 mr-2 text-red-400" />
+                                <service.icon className="w-5 h-5 mr-2 text-red-400"/>
                                 {service.name}
                             </h3>
                             <div className="mt-auto">
@@ -142,7 +142,8 @@ export function PlanCombiner() {
                                     value={selectValue}
                                     onValueChange={(value) => handleSelectChange(value, service)}
                                 >
-                                    <SelectTrigger className="w-full p-3 bg-gray-900/80 border border-gray-800 rounded-md text-white focus:border-red-400">
+                                    <SelectTrigger
+                                        className="w-full p-3 bg-gray-900/80 border border-gray-800 rounded-md text-white focus:border-red-400">
                     <span className="truncate">
                       {selectValue === NONE_VALUE
                           ? "-- Keine Auswahl --"
@@ -183,7 +184,7 @@ export function PlanCombiner() {
                         onClick={handleReset}
                         className="bg-red-600 hover:bg-red-700 text-white"
                     >
-                        <RotateCcw className="mr-2 h-4 w-4" /> {/* Icon */}
+                        <RotateCcw className="mr-2 h-4 w-4"/> {/* Icon */}
                         Auswahl zurücksetzen
                     </Button>
                 </div>
@@ -231,7 +232,8 @@ export function PlanCombiner() {
                         </h4>
 
                         {(totalSetupFees > 0 || totalOneTimeCosts > 0) && (
-                            <div className="flex justify-between text-lg text-gray-300 border-b border-gray-800 pb-2 mb-2">
+                            <div
+                                className="flex justify-between text-lg text-gray-300 border-b border-gray-800 pb-2 mb-2">
                 <span className="font-medium text-white">
                   Einmalige Kosten gesamt:
                 </span>
@@ -270,7 +272,6 @@ export function PlanCombiner() {
                 {formatCurrency(totalYearlyCost)} / Jahr
               </span>
                         </div>
-
                         <p className="text-sm text-gray-400 pt-4 text-center">
                             Hinweis: Monatliche Kosten sind Schätzungen (inkl. anteiliger
                             Jahrespläne). Jährliche Kosten beinhalten Rabatte. Alle Preise
