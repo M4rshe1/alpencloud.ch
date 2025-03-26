@@ -10,7 +10,7 @@ export default function Team() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Lehrne und <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-orange-300">Team</span> kennen
+            Lerne unser <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-orange-300">Team</span> kennen
           </h1>
           <p className="text-gray-300 text-lg max-w-3xl mx-auto">
             Unser diverses Team von Experten vereint jahrzehntelange Erfahrung in WordPress-Hosting, Sicherheit und Kundenservice.
