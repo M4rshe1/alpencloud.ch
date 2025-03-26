@@ -1,4 +1,5 @@
 import Link from "next/link";
+import {SOCIALS} from "@/lib/settings/socials";
 
 const Footer = () => {
     return (
@@ -32,13 +33,47 @@ const Footer = () => {
                             </li>
                             <li>
                                 <Link
-                                    href="/about"
+                                    href="/team"
                                     className="text-gray-400 hover:text-white transition-colors"
                                 >
-                                    Uber uns
+                                    Team
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
+                                    href="/services#wordpress-hosting"
+                                    className="text-gray-400 hover:text-white transition-colors"
+                                >
+                                    Wordpress Hosting
                                 </Link>
                             </li>
                         </ul>
+                    </div>
+                    <div>
+                        <h3 className="text-lg font-semibold text-white mb-4">Socials</h3>
+                        <div className="text-gray-400">
+                            {
+                                SOCIALS.map((social, index) => {
+                                    const Icon = social.icon;
+                                    return (
+                                        <Link
+                                            key={index}
+                                            href={social.link}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-gray-400 hover:text-red-400 transition-colors"
+                                        >
+                                            <Icon className="inline-block mr-1"/>
+                                        </Link>
+                                    )
+                                })
+                            }
+                        </div>
+                        {/*<p className="text-gray-400 mt-4">*/}
+                        {/*    <Link href={GITHUB_LINK} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">*/}
+                        {/*        <IconBrandGithub className="inline-block mr-1"/>*/}
+                        {/*    </Link>*/}
+                        {/*</p>*/}
                     </div>
                 </div>
                 <div className="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
