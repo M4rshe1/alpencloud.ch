@@ -81,12 +81,12 @@ export const HEADER_LINKS = [
                 icon: Mail,
                 href: "/services#email"
             },
-            {
-                title: "Training",
-                description: "WordPress-Training und Schulungen für alle Erfahrungsstufen",
-                icon: BookOpen,
-                href: "/services#training"
-            },
+            // {
+            //     title: "Training",
+            //     description: "WordPress-Training und Schulungen für alle Erfahrungsstufen",
+            //     icon: BookOpen,
+            //     href: "/services#training"
+            // },
             {
                 title: "Domain Services",
                 description: "Die Domainregistrierung und -verwaltung für Ihre Online-Präsenz",
