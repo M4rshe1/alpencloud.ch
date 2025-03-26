@@ -4,8 +4,8 @@ export const STATS = [
         value: "100+"
     },
     {
-        label: "Uptime Guarantee",
-        value: "99.9%"
+        label: "Uptime Garantie",
+        value: "99%"
     },
     {
         label: "Support",

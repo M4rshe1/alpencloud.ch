@@ -37,7 +37,7 @@ export const HEADER_LINKS: HeaderLink[] = [
         ]
     },
     {
-        title: "About",
+        title: "Über uns",
         href: "/about",
         icon: Info,
         submenu: [
