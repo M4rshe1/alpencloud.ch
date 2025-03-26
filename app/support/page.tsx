@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react"; // Keep useState if needed elsewhere, otherwise remove
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -10,7 +9,6 @@ import {
     Clock,
     MessageSquare,
     Send,
-    // CheckCircle2, // No longer needed for the success message
 } from "lucide-react";
 import {
     Form,
@@ -39,12 +37,9 @@ const formSchema = z.object({
     message: z.string().min(10, "Message must be at least 10 characters"),
 });
 
-// Define the recipient email address
 const RECIPIENT_EMAIL = "support@alpencloud.ch";
 
 export default function Support() {
-    // const [isSubmitted, setIsSubmitted] = useState(false); // Removed isSubmitted state
-
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -71,20 +66,11 @@ ${values.message}
         const encodedSubject = encodeURIComponent(subject);
         const encodedBody = encodeURIComponent(body.trim()); // Trim whitespace
 
-        // Construct the mailto link
         const mailtoLink = `mailto:${RECIPIENT_EMAIL}?subject=${encodedSubject}&body=${encodedBody}`;
 
         console.log("Generated mailto link:", mailtoLink); // Keep for debugging
 
-        // Redirect the user to the mailto link
         window.location.href = mailtoLink;
-
-        // Optional: Reset the form after attempting to open the mail client
-        // Note: The user might cancel the email, leaving the form filled.
-        // Resetting might be unexpected in that case. Consider UX.
-        // form.reset(); // Uncomment if you want to reset the form fields immediately
-
-        // setIsSubmitted(true); // Removed - redirecting instead
     }
 
     return (
@@ -103,7 +89,6 @@ ${values.message}
                 </p>
             </div>
 
-            {/* Contact Info Cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
                 <div className="p-6 rounded-2xl bg-gray-800/50 backdrop-blur-lg border border-red-500/20 shadow-[0_0_15px_rgba(220,38,38,0.2)]">
                     <HeadphonesIcon className="h-8 w-8 text-red-400 mb-4" />
@@ -122,7 +107,7 @@ ${values.message}
                         Email Support
                     </h3>
                     <a
-                        href={`mailto:${RECIPIENT_EMAIL}`} // Use the constant here too
+                        href={`mailto:${RECIPIENT_EMAIL}`}
                         className="hover:underlined text-red-400"
                     >
                         {RECIPIENT_EMAIL}
@@ -148,10 +133,8 @@ ${values.message}
                 </div>
             </div>
 
-            {/* Contact Form */}
             <div className="max-w-2xl mx-auto">
                 <div className="p-8 rounded-2xl bg-gray-800/50 backdrop-blur-lg border border-red-500/20 shadow-[0_0_15px_rgba(220,38,38,0.2)]">
-                    {/* Removed conditional rendering for isSubmitted */}
                     <>
                         <div className="flex items-center gap-3 mb-6">
                             <MessageSquare className="h-6 w-6 text-red-400" />
