@@ -21,7 +21,7 @@ export default async function RootLayout({
 
 }) {
     return (
-        <html lang="en">
+        <html lang="de">
         <body className={`${inter.className} bg-gray-900 text-white`}>
         <Header/>
         <div style={{height: `${BANNERS.length * 36}px`}}/>
