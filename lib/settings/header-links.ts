@@ -1,7 +1,17 @@
-import {BookOpen, Home, Info, Mail, MessageCircleQuestion, Scale, Server, Shield, Users, Wrench} from "lucide-react";
-import {IconBrandWordpress, IconWorldWww} from "@tabler/icons-react";
+import {Home, Info, LucideIcon, Mail, MessageCircleQuestion, Scale, Server, Shield, Users, Wrench} from "lucide-react";
+import {IconBrandWordpress, IconWorldWww, TablerIcon} from "@tabler/icons-react";
 
-export const HEADER_LINKS = [
+export interface HeaderLink {
+    title: string;
+    description?: string;
+    href: string;
+    icon: LucideIcon | TablerIcon;
+    banner?: boolean;
+    whiteButton?: boolean;
+    submenu?: HeaderLink[];
+}
+
+export const HEADER_LINKS: HeaderLink[] = [
     {
         title: "Home",
         href: "/",
@@ -51,6 +61,7 @@ export const HEADER_LINKS = [
             },
             {
                 title: "Wieso AlpenCloud?",
+                banner: true,
                 description: "Erfahren Sie, warum Sie sich für AlpenCloud entscheiden sollten",
                 icon: MessageCircleQuestion,
                 href: "/why-alpencloud"
@@ -71,6 +82,7 @@ export const HEADER_LINKS = [
             },
             {
                 title: "WordPress Hosting",
+                banner: true,
                 description: "High-performance WordPress hosting in der Schweiz",
                 icon: IconBrandWordpress,
                 href: "/services#wordpress-hosting"

@@ -1,8 +1,8 @@
 "use client"
 
 import Link from "next/link";
-import React, { useState } from "react";
-import { Menu, X } from "lucide-react";
+import React, {useState} from "react";
+import {Menu, X} from "lucide-react";
 import {
     NavigationMenu,
     NavigationMenuContent,
@@ -11,8 +11,9 @@ import {
     NavigationMenuList,
     NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import { HEADER_LINKS } from "@/lib/settings/header-links";
+import {HEADER_LINKS, HeaderLink} from "@/lib/settings/header-links";
 import Banners from "@/components/banners";
+import {cn} from "@/lib/utils";
 
 const Header = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -47,29 +48,19 @@ const Header = () => {
                                                     <NavigationMenuContent
                                                         className="bg-gray-900/80 backdrop-blur-lg border border-red-500/20 rounded-lg shadow-lg">
                                                         <div className="grid w-[600px] gap-3 p-4 md:grid-cols-2">
-                                                            {link.submenu.map((item) => {
-                                                                const SubIcon = item.icon;
+                                                            {link.submenu.map((item, index) => {
                                                                 return (
-                                                                    <NavigationMenuLink
-                                                                        key={item.title}
-                                                                        href={item.href}
-                                                                        className="flex items-start space-x-4 p-3 rounded-lg hover:bg-red-500/10 transition-colors group"
-                                                                    >
-                                                                        <div
-                                                                            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-red-600/10 group-hover:bg-red-600/20 transition-colors">
-                                                                            <SubIcon className="h-6 w-6 text-red-400"/>
-                                                                        </div>
-                                                                        <div className="space-y-1">
-                                                                            <h4
-                                                                                className="text-sm font-medium leading-none text-gray-300 group-hover:text-red-400 transition-colors">
-                                                                                {item.title}
-                                                                            </h4>
-                                                                            <p
-                                                                                className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors line-clamp-2">
-                                                                                {item.description}
-                                                                            </p>
-                                                                        </div>
-                                                                    </NavigationMenuLink>
+                                                                    item.banner ?
+                                                                        <BannerLink
+                                                                            key={index}
+                                                                            item={item}
+                                                                            span={Math.ceil((link.submenu?.length ?? 1) / 2) + 1}
+                                                                        />
+                                                                        :
+                                                                        <NormalLink
+                                                                            key={index}
+                                                                            item={item}
+                                                                        />
                                                                 );
                                                             })}
                                                         </div>
@@ -100,9 +91,9 @@ const Header = () => {
                         >
                             <span className="sr-only">Open main menu</span>
                             {mobileMenuOpen ? (
-                                <X className="block h-6 w-6" aria-hidden="true" />
+                                <X className="block h-6 w-6" aria-hidden="true"/>
                             ) : (
-                                <Menu className="block h-6 w-6" aria-hidden="true" />
+                                <Menu className="block h-6 w-6" aria-hidden="true"/>
                             )}
                         </button>
                     </div>
@@ -120,7 +111,7 @@ const Header = () => {
                                 return (
                                     <div key={link.title} className="py-2">
                                         <div className="px-3 py-2 font-medium text-gray-300 flex items-center">
-                                            <Icon className="w-4 h-4 mr-2" />
+                                            <Icon className="w-4 h-4 mr-2"/>
                                             <span>{link.title}</span>
                                         </div>
                                         <div className="pl-6 mt-1 space-y-1">
@@ -131,7 +122,7 @@ const Header = () => {
                                                     className="px-3 py-2 text-sm text-gray-400 hover:bg-gray-800 hover:text-white rounded-md flex items-center"
                                                     onClick={() => setMobileMenuOpen(false)}
                                                 >
-                                                    <subItem.icon className="w-4 h-4 mr-2 text-red-400" />
+                                                    <subItem.icon className="w-4 h-4 mr-2 text-red-400"/>
                                                     {subItem.title}
                                                 </Link>
                                             ))}
@@ -147,7 +138,7 @@ const Header = () => {
                                     className="px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-800 hover:text-white flex items-center"
                                     onClick={() => setMobileMenuOpen(false)}
                                 >
-                                    <Icon className="w-4 h-4 mr-2" />
+                                    <Icon className="w-4 h-4 mr-2"/>
                                     {link.title}
                                 </Link>
                             );
@@ -157,6 +148,61 @@ const Header = () => {
             )}
         </nav>
     );
+}
+
+const NormalLink = ({item}: { item: HeaderLink }) => {
+    const Icon = item.icon;
+    return (
+        <NavigationMenuLink
+            key={item.title}
+            href={item.href}
+            className="flex items-start space-x-4 p-3 rounded-lg hover:bg-red-500/10 transition-colors group"
+        >
+            <div
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-red-600/10 group-hover:bg-red-600/20 transition-colors">
+                <Icon className="h-6 w-6 text-red-400"/>
+            </div>
+            <div className="space-y-1">
+                <h4
+                    className="text-sm font-medium leading-none text-gray-300 group-hover:text-red-400 transition-colors">
+                    {item.title}
+                </h4>
+                <p
+                    className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors line-clamp-2">
+                    {item.description}
+                </p>
+            </div>
+        </NavigationMenuLink>
+    )
+}
+
+const BannerLink = ({item, span}: { item: HeaderLink, span: number }) => {
+    const Icon = item.icon;
+    return (
+        <NavigationMenuLink
+            href={item.href}
+            className={cn("flex items-start space-x-4 p-10 rounded-lg bg-gradient-to-b from-red-900/50 to-gray-900/50 backdrop-blur-lg shadow-lg group col-start-1 row-start-1", {
+                "row-span-2": span === 2,
+                "row-span-3": span === 3,
+                "row-span-4": span === 4,
+            })}
+        >
+            <div className="flex flex-col items-start gap-1 h-full justify-center">
+                <div
+                    className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-red-600/10">
+                    <Icon className="h-8 w-8 text-red-400" />
+                </div>
+                <h4
+                    className="text-lg font-medium mb-2 mt-4 leading-none text-gray-300">
+                    {item.title}
+                </h4>
+                <p
+                    className="text-sm text-gray-400 ">
+                    {item.description}
+                </p>
+            </div>
+        </NavigationMenuLink>
+    )
 }
 
 export default Header;
