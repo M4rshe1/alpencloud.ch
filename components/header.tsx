@@ -128,7 +128,7 @@ const Header = () => {
                                                 <Link
                                                     key={subItem.title}
                                                     href={subItem.href}
-                                                    className="block px-3 py-2 text-sm text-gray-400 hover:bg-gray-800 hover:text-white rounded-md flex items-center"
+                                                    className="px-3 py-2 text-sm text-gray-400 hover:bg-gray-800 hover:text-white rounded-md flex items-center"
                                                     onClick={() => setMobileMenuOpen(false)}
                                                 >
                                                     <subItem.icon className="w-4 h-4 mr-2 text-red-400" />
@@ -144,7 +144,7 @@ const Header = () => {
                                 <Link
                                     key={link.title}
                                     href={link.href}
-                                    className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-800 hover:text-white flex items-center"
+                                    className="px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-800 hover:text-white flex items-center"
                                     onClick={() => setMobileMenuOpen(false)}
                                 >
                                     <Icon className="w-4 h-4 mr-2" />
