@@ -2,7 +2,7 @@
 
 import {Check} from "lucide-react";
 import {Service, ServicePackage} from "@/lib/settings/services";
-import {cn} from "@/lib/utils";
+import {cn, formatPrice} from "@/lib/utils";
 import {useState} from "react";
 import Link from "next/link";
 
@@ -64,6 +64,10 @@ export const Plans = ({service, annual}: { service: Service, annual: boolean }) 
 }
 
 const Plan = ({plan, annual, oneTime}: { plan: ServicePackage, annual: boolean, oneTime: boolean }) => {
+    const price = formatPrice(annual
+        ? plan.price * 12 * (1 - (plan.annualDiscount ?? 0))
+        : plan.price);
+
     return (
         <div
             className={cn("p-6 rounded-2xl bg-gray-800/50 backdrop-blur-lg border border-red-500/20 shadow-[0_0_15px_rgba(220,38,38,0.2)] relative flex flex-col h-full", {
@@ -79,11 +83,12 @@ const Plan = ({plan, annual, oneTime}: { plan: ServicePackage, annual: boolean, 
             <h3 className="text-2xl font-bold text-white mb-4">{plan.name}</h3>
             <div className="text-3xl font-bold text-red-400 mb-6 flex gap-2 items-center justify-center">
                 <div className={cn("text-4xl font-bold text-red-400 mb-2 flex")}>
-                    {annual ? (plan.price * 12 * (1 - (plan.annualDiscount ?? 0))).toFixed(0) : plan.price}
+                    {price == "0" ? 'Free' : price}
                     <div
                         className={"flex items-start justify-center flex-col text-xs text-gray-300 font-normal ml-1"}>
-                        <span>CHF</span>
-                        {!oneTime &&
+
+                        {price !== "0" && <span>CHF</span>}
+                        {!oneTime && !price &&
                             <span>{annual ? "/Jahr" : "/Monat"}</span>
                         }
                     </div>
@@ -91,7 +96,7 @@ const Plan = ({plan, annual, oneTime}: { plan: ServicePackage, annual: boolean, 
                 {
                     !oneTime && plan.annualDiscount && annual ? (
                         <span className="text-sm bg-red-600/20 text-red-400 px-2 py-1 rounded-full mb-2">
-                            {plan.annualDiscount * 100}%
+                            {(plan.annualDiscount * 100).toFixed(0)}%
                         </span>
                     ) : null
                 }

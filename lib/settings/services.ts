@@ -40,6 +40,9 @@ export const SERVICES: Service[] = [
                     "50GB SSD Storage",
                     "Free SSL Certificate",
                     "Weekly Backups",
+                    "1 Free *.alpencloud.ch Domain",
+                    "Alle Free Themes und Plugins",
+                    "Weiter Themes & Plugins auf Anfrage"
                 ]
             },
             {
@@ -54,6 +57,9 @@ export const SERVICES: Service[] = [
                     "100GB SSD Storage",
                     "Free SSL Certificate",
                     "Daily Backups",
+                    "1 Free *.alpencloud.ch Domain",
+                    "Alle Free Themes und Plugins",
+                    "Weiter Themes & Plugins auf Anfrage"
                 ]
             },
             {
@@ -63,10 +69,13 @@ export const SERVICES: Service[] = [
                 setupFee: 600,
                 description: "Für große Websites und E-Commerce-Shops.",
                 features: [
-                    "5 WordPress Installations",
+                    "1 WordPress Installations",
                     "300GB SSD Storage",
                     "Free SSL Certificate",
                     "Daily Backups",
+                    "1 Free *.alpencloud.ch Domain",
+                    "Alle Free Themes und Plugins",
+                    "Weiter Themes & Plugins auf Anfrage"
                 ]
             }
         ],
@@ -259,12 +268,30 @@ export const SERVICES: Service[] = [
         packages: [
             {
                 name: "Basic",
-                price: 15,
-                mostPopular: true,
+                price: 0,
                 description: "Ideal für kleine Websites.",
                 features: [
                     "Email Support",
+                    "Response Time: 5 Werkstage"
+                ]
+            },
+            {
+                name: "Priority 2",
+                price: 15,
+                mostPopular: true,
+                description: "Ideal für kleine Websites und kleine Unternehmen.",
+                features: [
+                    "Email Support",
                     "Response Time: 24 hours"
+                ]
+            },
+            {
+                name: "Priority 1",
+                price: 30,
+                description: "Ideal für mittelgroße Websites und Unternehmen.",
+                features: [
+                    "Email Support",
+                    "Response Time: 12 hours"
                 ]
             },
             // {

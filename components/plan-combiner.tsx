@@ -1,16 +1,23 @@
 "use client";
 
-import {useState, useMemo} from "react"; // Import ChangeEvent
-import {SERVICES, Service, ServicePackage} from "@/lib/settings/services";
-import {Select, SelectContent, SelectItem, SelectTrigger} from "@/components/ui/select";
+import { useState, useMemo } from "react";
+import { SERVICES, Service, ServicePackage } from "@/lib/settings/services";
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+} from "@/components/ui/select";
+import { Button } from "@/components/ui/button"; // Import Button component
+import { RotateCcw } from "lucide-react"; // Import an icon for the button
 
-// Interface bleibt gleich
+// Interface remains the same
 interface SelectedPackage extends ServicePackage {
     serviceId: string;
     serviceType: "monthly" | "yearly" | "one-time";
 }
 
-// Konstante für den "Keine"-Wert im Select
+// Constant for the "None" value in Select
 const NONE_VALUE = "__NONE__";
 
 export function PlanCombiner() {
@@ -18,27 +25,19 @@ export function PlanCombiner() {
         [],
     );
 
-    // Einheitlicher Handler für Select-Änderungen
-    const handleSelectChange = (
-        event: string,
-        service: Service,
-    ) => {
-        const selectedPackageName = event;
+    // Unified handler for Select changes
+    const handleSelectChange = (value: string, service: Service) => {
+        const selectedPackageName = value;
 
         setSelectedPackages((prevSelected) => {
-            // 1. Filtere alle vorhandenen Pakete für den *gleichen Service* heraus
             const otherPackages = prevSelected.filter(
                 (p) => p.serviceId !== service.id,
             );
 
-            // 2. Prüfe, ob eine gültige Paketoption (nicht "Keine") ausgewählt wurde
             if (selectedPackageName !== NONE_VALUE) {
-                // Finde das vollständige Paketobjekt basierend auf dem Namen
                 const selectedPkg = service.packages.find(
                     (pkg) => pkg.name === selectedPackageName,
                 );
-
-                // Wenn das Paket gefunden wurde, füge es hinzu
                 if (selectedPkg) {
                     return [
                         ...otherPackages,
@@ -50,65 +49,80 @@ export function PlanCombiner() {
                     ];
                 }
             }
-
-            // Wenn "Keine" ausgewählt wurde oder das Paket nicht gefunden wurde (sollte nicht passieren),
-            // gib nur die anderen Pakete zurück (effektiv wird das Paket für diesen Service entfernt)
             return otherPackages;
         });
     };
 
-    // Berechnungslogik bleibt gleich
-    const {totalMonthlyCost, totalYearlyCost, totalSetupFees, totalOneTimeCosts} =
-        useMemo(() => {
-            let monthly = 0;
-            let yearly = 0;
-            let setup = 0;
-            let oneTime = 0;
+    // --- Reset Handler ---
+    const handleReset = () => {
+        setSelectedPackages([]); // Clear the selected packages state
+    };
 
-            selectedPackages.forEach((pkg) => {
-                setup += pkg.setupFee || 0;
-                if (pkg.serviceType === "monthly") {
-                    monthly += pkg.price;
-                    const annualPrice = pkg.price * 12 * (1 - (pkg.annualDiscount || 0));
-                    yearly += annualPrice;
-                } else if (pkg.serviceType === "yearly") {
-                    yearly += pkg.price;
-                    monthly += pkg.price / 12;
-                } else if (pkg.serviceType === "one-time") {
-                    oneTime += pkg.price;
-                }
-            });
+    // Calculation logic remains the same
+    const {
+        totalMonthlyCost,
+        totalYearlyCost,
+        totalSetupFees,
+        totalOneTimeCosts,
+    } = useMemo(() => {
+        let monthly = 0;
+        let yearly = 0;
+        let setup = 0;
+        let oneTime = 0;
 
-            return {
-                totalMonthlyCost: monthly,
-                totalYearlyCost: yearly,
-                totalSetupFees: setup,
-                totalOneTimeCosts: oneTime,
-            };
-        }, [selectedPackages]);
+        selectedPackages.forEach((pkg) => {
+            setup += pkg.setupFee || 0;
+            if (pkg.serviceType === "monthly") {
+                monthly += pkg.price;
+                const annualPrice =
+                    pkg.price * 12 * (1 - (pkg.annualDiscount || 0));
+                yearly += annualPrice;
+            } else if (pkg.serviceType === "yearly") {
+                yearly += pkg.price;
+                monthly += pkg.price / 12;
+            } else if (pkg.serviceType === "one-time") {
+                oneTime += pkg.price;
+            }
+        });
+
+        return {
+            totalMonthlyCost: monthly,
+            totalYearlyCost: yearly,
+            totalSetupFees: setup,
+            totalOneTimeCosts: oneTime,
+        };
+    }, [selectedPackages]);
 
     const formatCurrency = (amount: number) => {
-        return `$${amount.toFixed(2)}`;
+        return amount.toLocaleString("de-CH", {
+            style: "currency",
+            currency: "CHF",
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+        });
     };
 
     return (
-        <div className="mt-20 pt-10 border-t border-gray-700 mb-8">
+        <div className="mt-20 pt-10 mb-8">
             <h2 className="text-3xl font-bold text-white text-center mb-10">
                 Stellen Sie Ihre Pläne zusammen
             </h2>
             <p className="text-center text-gray-400 mb-12 max-w-2xl mx-auto">
-                Wählen Sie pro Service-Kategorie eine Paketoption aus dem Dropdown-Menü, um Ihr individuelles Bundle zu
-                erstellen.
+                Wählen Sie pro Service-Kategorie eine Paketoption aus dem
+                Dropdown-Menü, um Ihr individuelles Bundle zu erstellen.
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            {/* Service Selection Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
+                {" "}
+                {/* Reduced bottom margin */}
                 {SERVICES.map((service) => {
-                    // Finde das aktuell ausgewählte Paket für diesen Service
                     const currentSelection = selectedPackages.find(
                         (p) => p.serviceId === service.id,
                     );
-                    // Bestimme den Wert für das Select-Element
-                    const selectValue = currentSelection ? currentSelection.name : NONE_VALUE;
+                    const selectValue = currentSelection
+                        ? currentSelection.name
+                        : NONE_VALUE;
 
                     return (
                         <div
@@ -116,28 +130,29 @@ export function PlanCombiner() {
                             className="p-6 rounded-xl bg-gray-800/50 backdrop-blur-lg border border-red-500/20 shadow-[0_0_15px_rgba(220,38,38,0.2)] relative flex flex-col h-full"
                         >
                             <h3 className="text-xl font-semibold text-white mb-4 flex items-center">
-                                <service.icon className="w-5 h-5 mr-2 text-red-400"/>
+                                <service.icon className="w-5 h-5 mr-2 text-red-400" />
                                 {service.name}
                             </h3>
-                            <div
-                                className="mt-auto"> {/* Sorgt dafür, dass Select unten ist, falls Beschreibung lang */}
-                                <label htmlFor={service.id} className="sr-only"> {/* Screenreader Label */}
+                            <div className="mt-auto">
+                                <label htmlFor={service.id} className="sr-only">
                                     Paket für {service.name} auswählen
                                 </label>
                                 <Select
                                     name={service.id}
                                     value={selectValue}
-                                    onValueChange={(e) => handleSelectChange(e, service)}
+                                    onValueChange={(value) => handleSelectChange(value, service)}
                                 >
-                                    <SelectTrigger
-                                        className="w-full p-3 bg-gray-700 border border-gray-600 rounded-md text-white focus:ring-red-400 focus:border-orange-500"
-                                    >
-                                        {selectValue === NONE_VALUE
-                                            ? "-- Keine Auswahl --"
-                                            : selectValue}
+                                    <SelectTrigger className="w-full p-3 bg-gray-900/80 border border-gray-800 rounded-md text-white focus:border-red-400">
+                    <span className="truncate">
+                      {selectValue === NONE_VALUE
+                          ? "-- Keine Auswahl --"
+                          : selectValue}
+                    </span>
                                     </SelectTrigger>
                                     <SelectContent>
-                                        <SelectItem value={NONE_VALUE}>-- Keine Auswahl --</SelectItem>
+                                        <SelectItem value={NONE_VALUE}>
+                                            -- Keine Auswahl --
+                                        </SelectItem>
                                         {service.packages.map((pkg) => (
                                             <SelectItem key={pkg.name} value={pkg.name}>
                                                 {pkg.name} (
@@ -145,7 +160,8 @@ export function PlanCombiner() {
                                                 {service.type === "monthly" && "/Monat"}
                                                 {service.type === "yearly" && "/Jahr"}
                                                 {service.type === "one-time" && " einmalig"}
-                                                {pkg.setupFee && ` + ${formatCurrency(pkg.setupFee)} Setup`}
+                                                {pkg.setupFee &&
+                                                    ` + ${formatCurrency(pkg.setupFee)} Setup`}
                                                 )
                                             </SelectItem>
                                         ))}
@@ -157,55 +173,108 @@ export function PlanCombiner() {
                 })}
             </div>
 
+            {/* --- Reset Button --- */}
+            {selectedPackages.length > 0 && ( // Only show if selections exist
+                <div className="text-center mb-12">
+                    {" "}
+                    {/* Added margin bottom */}
+                    <Button
+                        variant="destructive" // Use a destructive variant for reset
+                        onClick={handleReset}
+                        className="bg-red-600 hover:bg-red-700 text-white"
+                    >
+                        <RotateCcw className="mr-2 h-4 w-4" /> {/* Icon */}
+                        Auswahl zurücksetzen
+                    </Button>
+                </div>
+            )}
+
+            {/* --- Improved Summary Section --- */}
             {selectedPackages.length > 0 && (
                 <div className="bg-gray-900 p-8 rounded-lg shadow-xl border border-gray-700">
                     <h3 className="text-2xl font-semibold text-white mb-6 text-center">
                         Zusammenfassung Ihres individuellen Pakets
                     </h3>
-                    <div className="space-y-4 mb-6">
-                        {selectedPackages.map((pkg) => (
-                            <div
-                                key={`${pkg.serviceId}-${pkg.name}`}
-                                className="flex justify-between items-center text-gray-300 border-b border-gray-700 pb-2"
-                            >
-                <span>
-                  {SERVICES.find((s) => s.id === pkg.serviceId)?.name} - {pkg.name}
+
+                    {/* Itemized List */}
+                    <div className="space-y-3 mb-6 border-b border-gray-700 pb-6">
+                        {selectedPackages.map((pkg) => {
+                            const service = SERVICES.find((s) => s.id === pkg.serviceId);
+                            return (
+                                <div
+                                    key={`${pkg.serviceId}-${pkg.name}`}
+                                    className="flex justify-between items-start text-gray-300"
+                                >
+                  <span className="flex-1 mr-4">
+                    {service?.name} - {pkg.name}
+                  </span>
+                                    <span className="text-right whitespace-nowrap">
+                    {formatCurrency(pkg.price)}
+                                        {pkg.serviceType === "monthly" && "/Monat"}
+                                        {pkg.serviceType === "yearly" && "/Jahr"}
+                                        {pkg.serviceType === "one-time" && " einmalig"}
+                                        {pkg.setupFee && (
+                                            <span className="block text-xs text-gray-400">
+                        + {formatCurrency(pkg.setupFee)} Setup
+                      </span>
+                                        )}
+                  </span>
+                                </div>
+                            );
+                        })}
+                    </div>
+
+                    {/* Totals Section - Table-like Layout */}
+                    <div className="space-y-3">
+                        <h4 className="text-xl font-semibold text-white mb-4 text-center">
+                            Gesamtkosten
+                        </h4>
+
+                        {(totalSetupFees > 0 || totalOneTimeCosts > 0) && (
+                            <div className="flex justify-between text-lg text-gray-300 border-b border-gray-800 pb-2 mb-2">
+                <span className="font-medium text-white">
+                  Einmalige Kosten gesamt:
                 </span>
-                                <span className="text-right">
-                  {formatCurrency(pkg.price)}
-                                    {pkg.serviceType === "monthly" && "/Monat"}
-                                    {pkg.serviceType === "yearly" && "/Jahr"}
-                                    {pkg.serviceType === "one-time" && " einmalig"}
-                                    {pkg.setupFee && ` (+ ${formatCurrency(pkg.setupFee)} Setup)`}
+                                <span className="font-semibold">
+                  {formatCurrency(totalSetupFees + totalOneTimeCosts)}
                 </span>
                             </div>
-                        ))}
-                    </div>
-                    <div className="mt-8 text-center space-y-3">
+                        )}
                         {totalSetupFees > 0 && (
-                            <p className="text-lg text-gray-300">
-                                <span
-                                    className="font-semibold text-white">Gesamte Setup-Gebühren:</span> {formatCurrency(totalSetupFees)}
-                            </p>
+                            <div className="flex justify-between text-sm text-gray-400 pl-4">
+                                <span>Setup-Gebühren:</span>
+                                <span>{formatCurrency(totalSetupFees)}</span>
+                            </div>
                         )}
                         {totalOneTimeCosts > 0 && (
-                            <p className="text-lg text-gray-300">
-                                <span
-                                    className="font-semibold text-white">Gesamte einmalige Servicekosten:</span> {formatCurrency(totalOneTimeCosts)}
-                            </p>
+                            <div className="flex justify-between text-sm text-gray-400 pl-4">
+                                <span>Einmalige Servicekosten:</span>
+                                <span>{formatCurrency(totalOneTimeCosts)}</span>
+                            </div>
                         )}
-                        <p className="text-xl text-gray-200">
-                            <span className="font-semibold text-white">Geschätzte monatliche Kosten:</span>{" "}
-                            {formatCurrency(totalMonthlyCost)}/Monat
-                        </p>
-                        <p className="text-xl text-green-400">
-                            <span
-                                className="font-semibold text-white">Geschätzte jährliche Kosten (inkl. Rabatte):</span>{" "}
-                            {formatCurrency(totalYearlyCost)}/Jahr
-                        </p>
-                        <p className="text-sm text-gray-400 mt-2">
-                            Hinweis: Monatliche Kosten für jährliche Pläne sind Schätzungen (Preis / 12). Jährliche
-                            Kosten beinhalten anwendbare Rabatte für monatliche Pläne bei jährlicher Zahlung.
+                        {(totalSetupFees > 0 || totalOneTimeCosts > 0) && (
+                            <div className="pt-2"></div>
+                        )}
+
+                        <div className="flex justify-between text-xl text-gray-200">
+              <span className="font-semibold text-white">
+                Effektive monatliche Kosten:
+              </span>
+                            <span>{formatCurrency(totalMonthlyCost)} / Monat</span>
+                        </div>
+                        <div className="flex justify-between text-xl text-green-400">
+              <span className="font-semibold text-white">
+                Effektive jährliche Kosten:
+              </span>
+                            <span className="font-bold">
+                {formatCurrency(totalYearlyCost)} / Jahr
+              </span>
+                        </div>
+
+                        <p className="text-sm text-gray-400 pt-4 text-center">
+                            Hinweis: Monatliche Kosten sind Schätzungen (inkl. anteiliger
+                            Jahrespläne). Jährliche Kosten beinhalten Rabatte. Alle Preise
+                            in CHF.
                         </p>
                     </div>
                 </div>
