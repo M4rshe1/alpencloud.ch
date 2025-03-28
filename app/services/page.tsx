@@ -15,8 +15,8 @@ export default function Services() {
                     Usere <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-orange-300">Hosting Services</span>
                 </h1>
                 <p className="text-gray-300 text-lg max-w-3xl mx-auto">
-                    Choose from our range of premium WordPress hosting solutions, designed to meet your specific needs.
-                    Each plan includes our Swiss-quality infrastructure and expert support.
+                    Wählen Sie aus unserer Auswahl an erstklassigen WordPress-Hosting-Lösungen, die speziell auf Ihre individuellen Bedürfnisse zugeschnitten sind.
+                    Jeder Plan umfasst unsere hochwertige Infrastruktur und erstklassigen Support.
                 </p>
             </div>
             {

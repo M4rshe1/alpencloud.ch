@@ -31,10 +31,10 @@ import {
 import Link from "next/link";
 
 const formSchema = z.object({
-    name: z.string().min(2, "Name must be at least 2 characters"),
-    email: z.string().email("Invalid email address"),
-    subject: z.string().min(1, "Please select a subject"),
-    message: z.string().min(10, "Message must be at least 10 characters"),
+    name: z.string().min(2, "Der Name muss mindestens 2 Zeichen lang sein"),
+    email: z.string().email("Ungültige E-Mail-Adresse"),
+    subject: z.string().min(1, "Bitte wählen Sie einen Betreff aus"),
+    message: z.string().min(10, "Die Nachricht muss mindestens 10 Zeichen lang sein"),
 });
 
 const RECIPIENT_EMAIL = "support@alpencloud.ch";
@@ -84,7 +84,7 @@ ${values.message}
           </span>
                 </h1>
                 <p className="text-gray-300 text-lg max-w-3xl mx-auto">
-                    User Team ist hier, um Ihnen bei Fragen oder Bedenken zu unseren
+                    Unser Team ist hier, um Ihnen bei Fragen oder Bedenken zu unseren
                     Dienstleistungen zu helfen.
                 </p>
             </div>
@@ -211,7 +211,7 @@ ${values.message}
                                                         Rechnungsanfrage
                                                     </SelectItem>
                                                     <SelectItem value="sales">Vertrieb</SelectItem>
-                                                    <SelectItem value="other">Other</SelectItem>
+                                                    <SelectItem value="other">Sonstiges</SelectItem>
                                                 </SelectContent>
                                             </Select>
                                             <FormMessage />
