@@ -153,7 +153,7 @@ export function PlanCombiner() {
 
     return (
         <div>
-            <h2 className="text-3xl font-bold text-white text-center mb-10">
+            <h2 className="text-3xl font-bold text-white text-center mb-10" id={"calculator"}>
                 Stellen Sie Ihre Pläne zusammen
             </h2>
             <p className="text-center text-gray-400 mb-12 max-w-2xl mx-auto">
