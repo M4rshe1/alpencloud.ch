@@ -133,7 +133,7 @@ export function PlanCombiner() {
 
         body +=
             "\nBitte kontaktieren Sie mich bezüglich dieser Auswahl oder senden Sie mir ein unverbindliches Angebot.\n\n" +
-            "Mit freundlichen Grüßen,\n\n" +
+            "Mit freundlichen Grüssen,\n\n" +
             "[Ihr Name hier]\n" +
             "[Ihre Kontaktdaten hier]";
 

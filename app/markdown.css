@@ -1,0 +1,119 @@
+.markdown {
+    @apply space-y-4;
+}
+
+.markdown a {
+    @apply text-red-400 transition duration-200 ease-in-out underline;
+}
+
+.markdown a:hover {
+    @apply text-red-500;
+}
+
+.markdown strong {
+    @apply text-red-400;
+}
+
+.markdown em {
+    @apply text-amber-300;
+}
+
+.markdown p code {
+    @apply bg-gray-400/20 text-red-400 rounded-md px-1 py-0.5 text-sm w-fit relative;
+}
+
+.markdown blockquote {
+    @apply bg-gray-400/20 rounded-md px-1 py-0.5 text-sm w-fit relative pl-3;
+}
+
+.markdown blockquote p::before {
+    content: "";
+    @apply bg-red-400 absolute left-0 top-0 w-1 h-full rounded-md;
+}
+
+.markdown ul {
+    @apply list-disc pl-5 marker:text-red-400;
+}
+
+.markdown ol {
+    @apply list-decimal pl-5 marker:text-red-400;
+}
+
+/* Rose Pine inspired heading styles */
+.markdown h1 {
+    @apply text-3xl font-bold mb-3;
+    position: relative;
+    color: #eb6f92;
+}
+
+.markdown h1::before {
+    content: "#";
+    margin-right: 0.5rem;
+    opacity: 0.7;
+    color: #eb6f92;
+}
+
+.markdown h2 {
+    @apply text-2xl font-bold mb-2;
+    position: relative;
+    color: #f6c172;
+}
+
+.markdown h2::before {
+    content: "##";
+    margin-right: 0.5rem;
+    opacity: 0.7;
+    color: #f6c172;
+}
+
+.markdown h3 {
+    @apply text-xl font-bold mb-2;
+    position: relative;
+    color: #31748f;
+}
+
+.markdown h3::before {
+    content: "###";
+    margin-right: 0.5rem;
+    opacity: 0.7;
+    color: #31748f;
+}
+
+.markdown h4 {
+    @apply text-lg font-bold mb-1;
+    position: relative;
+    color: #9ccfd8;
+}
+
+.markdown h4::before {
+    content: "####";
+    margin-right: 0.5rem;
+    opacity: 0.7;
+    color: #9ccfd8;
+}
+
+.markdown h5 {
+    @apply font-bold mb-1;
+    position: relative;
+    color: #c4a7d4;
+}
+
+.markdown h5::before {
+    content: "#####";
+    margin-right: 0.5rem;
+    opacity: 0.7;
+    color: #c4a7d4;
+}
+
+.markdown h6 {
+    @apply font-bold mb-1;
+    position: relative;
+    color: #ebac85;
+}
+
+.markdown h6::before {
+    content: "######";
+    margin-right: 0.5rem;
+    opacity: 0.7;
+    color: #ebac85;
+}

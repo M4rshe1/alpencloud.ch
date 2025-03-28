@@ -107,7 +107,7 @@ export const HEADER_LINKS: HeaderLink[] = [
             },
             {
                 title: "Maintenance",
-                description: "Regelmäßige Wartung und Updates für Ihre WordPress-Website",
+                description: "Regelmässige Wartung und Updates für Ihre WordPress-Website",
                 icon: Wrench,
                 href: "/services#maintenance"
             }

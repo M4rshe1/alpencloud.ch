@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import {REFERENCES} from "@/lib/settings/references";
 
-const ReferencesPage = () => {
+const Page = () => {
     return (
         <div className="container mx-auto py-12">
             <h1 className="text-3xl font-bold text-white text-center mb-8">
@@ -63,4 +63,4 @@ const ReferenceCard = ({ reference }: ReferenceCardProps) => {
     );
 };
 
-export default ReferencesPage;
+export default Page;

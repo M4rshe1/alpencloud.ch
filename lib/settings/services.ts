@@ -51,7 +51,7 @@ export const SERVICES: Service[] = [
                 annualDiscount: .07,
                 setupFee: 400,
                 mostPopular: true,
-                description: "Für mittelgroße Websites mit mehr Traffic.",
+                description: "Für mittelgrosse Websites mit mehr Traffic.",
                 features: [
                     "1 WordPress Installations",
                     "100GB SSD Storage",
@@ -67,7 +67,7 @@ export const SERVICES: Service[] = [
                 price: 49,
                 annualDiscount: .09,
                 setupFee: 600,
-                description: "Für große Websites und E-Commerce-Shops.",
+                description: "Für grosse Websites und E-Commerce-Shops.",
                 features: [
                     "1 WordPress Installations",
                     "300GB SSD Storage",
@@ -104,7 +104,7 @@ export const SERVICES: Service[] = [
                 name: "Business",
                 price: 30,
                 setupFee: 39,
-                description: "Für mittelgroße Unternehmen mit mehreren Benutzern.",
+                description: "Für mittelgrosse Unternehmen mit mehreren Benutzern.",
                 features: [
                     "5 Email Accounts",
                     "25GB Storage",
@@ -116,7 +116,7 @@ export const SERVICES: Service[] = [
                 name: "Enterprise",
                 price: 50,
                 setupFee: 69,
-                description: "Für große Unternehmen mit vielen Benutzern.",
+                description: "Für grosse Unternehmen mit vielen Benutzern.",
                 features: [
                     "Unlimited Email Accounts",
                     "300GB Storage",
@@ -195,7 +195,7 @@ export const SERVICES: Service[] = [
                 name: "Business",
                 price: 80,
                 setupFee: 30,
-                description: "Für mittelgroße Websites.",
+                description: "Für mittelgrosse Websites.",
                 features: [
                     "5 Domain Registrations",
                     "Free DNS Management",
@@ -207,7 +207,7 @@ export const SERVICES: Service[] = [
                 name: "Enterprise",
                 price: 400,
                 setupFee: 50,
-                description: "Für große Websites und Unternehmen.",
+                description: "Für grosse Websites und Unternehmen.",
                 features: [
                     "25 Domain Registrations",
                     "Free DNS Management",
@@ -219,7 +219,7 @@ export const SERVICES: Service[] = [
     },
     {
         name: "Maintenance",
-        description: "Regelmäßige Wartung und Updates für Ihre WordPress-Website.",
+        description: "Regelmässige Wartung und Updates für Ihre WordPress-Website.",
         icon: Wrench,
         id: "maintenance",
         type: "yearly",
@@ -237,7 +237,7 @@ export const SERVICES: Service[] = [
                 name: "Business",
                 price: 119,
                 mostPopular: true,
-                description: "Für mittelgroße Websites.",
+                description: "Für mittelgrosse Websites.",
                 features: [
                     "4 Mal Updates pro Jahr",
                     "2 Mal Backups pro Jahr",
@@ -248,7 +248,7 @@ export const SERVICES: Service[] = [
             {
                 name: "Enterprise",
                 price: 199,
-                description: "Für große Websites und Unternehmen.",
+                description: "Für grosse Websites und Unternehmen.",
                 features: [
                     "Monatliche Updates",
                     "Monatliche Backups",
@@ -288,7 +288,7 @@ export const SERVICES: Service[] = [
             {
                 name: "Priority 1",
                 price: 30,
-                description: "Ideal für mittelgroße Websites und Unternehmen.",
+                description: "Ideal für mittelgrosse Websites und Unternehmen.",
                 features: [
                     "Email Support",
                     "Response Time: 12 hours"
@@ -298,7 +298,7 @@ export const SERVICES: Service[] = [
             //     name: "Business",
             //     price: 79,
             //     mostPopular: true,
-            //     description: "Für mittelgroße Websites.",
+            //     description: "Für mittelgrosse Websites.",
             //     features: [
             //         "Email and Chat Support",
             //         "Response Time: 12 hours"
@@ -307,7 +307,7 @@ export const SERVICES: Service[] = [
             // {
             //     name: "Enterprise",
             //     price: 199,
-            //     description: "Für große Websites und Unternehmen.",
+            //     description: "Für grosse Websites und Unternehmen.",
             //     features: [
             //         "Email, Chat, and Phone Support",
             //         "Response Time: 1 hour"

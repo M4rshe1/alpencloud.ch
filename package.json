@@ -41,7 +41,7 @@
     "@tabler/core": "^1.1.1",
     "@tabler/icons": "^3.31.0",
     "@tabler/icons-react": "^3.31.0",
-    "@types/node": "22.13.13",
+    "@types/node": "22.13.14",
     "@types/react": "19.0.12",
     "@types/react-dom": "19.0.4",
     "autoprefixer": "10.4.21",
@@ -53,7 +53,7 @@
     "eslint": "9.23.0",
     "eslint-config-next": "15.2.4",
     "input-otp": "^1.4.2",
-    "lucide-react": "^0.483.0",
+    "lucide-react": "^0.485.0",
     "next": "15.2.4",
     "next-themes": "^0.4.6",
     "postcss": "8.5.3",
@@ -63,15 +63,19 @@
     "react-hook-form": "^7.54.2",
     "react-markdown": "^10.1.0",
     "react-resizable-panels": "^2.1.7",
+    "react-syntax-highlighter": "^15.6.1",
     "recharts": "^2.15.1",
     "rehype-raw": "^7.0.0",
     "remark-gfm": "^4.0.1",
-    "sonner": "^2.0.1",
+    "sonner": "^2.0.2",
     "tailwind-merge": "^3.0.2",
     "tailwindcss": "3.3.3",
     "tailwindcss-animate": "^1.0.7",
     "typescript": "5.8.2",
     "vaul": "^1.1.2",
     "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/react-syntax-highlighter": "^15.5.13"
   }
 }
