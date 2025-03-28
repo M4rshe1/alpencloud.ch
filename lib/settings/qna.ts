@@ -130,7 +130,7 @@ Für eine genaue Kostenschätzung ist eine detaillierte Besprechung Ihrer Anford
 *   **Email-Hosting:** Wenn E-Mail-Hosting enthalten ist, kann dies den Preis beeinflussen.
 *   **Domain-Management:** Einige Pakete beinhalten kostenlose Domain-Registrierung oder -Verlängerung.
 
-Für eine grobe preisberechnug nutzen sie doch bitte unseren [Hosting-Rechner](https://alpencloud.ch/services#calulator). Dort können Sie die verschiedenen Pakete vergleichen und die für Sie passende Lösung finden. Bei Fragen oder speziellen Anforderungen stehen wir Ihnen gerne zur Verfügung.`,
+Für eine grobe preisberechnug nutzen sie doch bitte unseren [Hosting-Rechner](https://alpencloud.ch/services#calculator). Dort können Sie die verschiedenen Pakete vergleichen und die für Sie passende Lösung finden. Bei Fragen oder speziellen Anforderungen stehen wir Ihnen gerne zur Verfügung.`,
     },
     {
         question: "Wie lange dauert es, eine WordPress-Website zu erstellen?",
