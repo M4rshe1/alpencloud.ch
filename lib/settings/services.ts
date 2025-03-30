@@ -38,8 +38,8 @@ export const SERVICES: Service[] = [
                 features: [
                     "1 WordPress Installation",
                     "50GB SSD Storage",
-                    "Free SSL Certificate",
-                    "Weekly Backups",
+                    "Gratis SSL Certificate",
+                    "Wöchentliche Backups",
                     "1 Free *.alpencloud.ch Domain",
                     "Alle Free Themes und Plugins",
                     "Weiter Themes & Plugins auf Anfrage"
@@ -56,7 +56,7 @@ export const SERVICES: Service[] = [
                     "1 WordPress Installations",
                     "100GB SSD Storage",
                     "Free SSL Certificate",
-                    "Daily Backups",
+                    "Tägliche Backups",
                     "1 Free *.alpencloud.ch Domain",
                     "Alle Free Themes und Plugins",
                     "Weiter Themes & Plugins auf Anfrage"
@@ -72,7 +72,7 @@ export const SERVICES: Service[] = [
                     "1 WordPress Installations",
                     "300GB SSD Storage",
                     "Free SSL Certificate",
-                    "Daily Backups",
+                    "Tägliche Backups",
                     "1 Free *.alpencloud.ch Domain",
                     "Alle Free Themes und Plugins",
                     "Weiter Themes & Plugins auf Anfrage"
@@ -272,7 +272,7 @@ export const SERVICES: Service[] = [
                 description: "Ideal für kleine Websites.",
                 features: [
                     "Email Support",
-                    "Response Time: 5 Werkstage"
+                    "Antwortzeit: 5 Werkstage"
                 ]
             },
             {
@@ -282,7 +282,7 @@ export const SERVICES: Service[] = [
                 description: "Ideal für kleine Websites und kleine Unternehmen.",
                 features: [
                     "Email Support",
-                    "Response Time: 24 hours"
+                    "Antwortzeit: 24 Stunden"
                 ]
             },
             {
@@ -291,7 +291,7 @@ export const SERVICES: Service[] = [
                 description: "Ideal für mittelgrosse Websites und Unternehmen.",
                 features: [
                     "Email Support",
-                    "Response Time: 12 hours"
+                    "Antwortzeit: 12 Stunden"
                 ]
             },
             // {
