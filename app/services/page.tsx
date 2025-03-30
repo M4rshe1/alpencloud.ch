@@ -12,7 +12,7 @@ export default function Services() {
 
             <div className="text-center mb-16">
                 <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
-                    Usere <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-orange-300">Hosting Services</span>
+                    Unsere <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-orange-300">Hosting Services</span>
                 </h1>
                 <p className="text-gray-300 text-lg max-w-3xl mx-auto">
                     Wählen Sie aus unserer Auswahl an erstklassigen WordPress-Hosting-Lösungen, die speziell auf Ihre individuellen Bedürfnisse zugeschnitten sind.

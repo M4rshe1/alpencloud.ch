@@ -139,7 +139,7 @@ ${values.message}
                         <div className="flex items-center gap-3 mb-6">
                             <MessageSquare className="h-6 w-6 text-red-400" />
                             <h2 className="text-2xl font-semibold text-white">
-                                Kontaktieren sie uns
+                                Kontaktieren Sie uns
                             </h2>
                         </div>
 
@@ -156,7 +156,7 @@ ${values.message}
                                             <FormLabel className="text-white">Name</FormLabel>
                                             <FormControl>
                                                 <Input
-                                                    placeholder="Your name"
+                                                    placeholder="Dein Name"
                                                     className="bg-gray-800/50 border-red-500/20 text-white"
                                                     {...field}
                                                 />
@@ -175,7 +175,7 @@ ${values.message}
                                             <FormControl>
                                                 <Input
                                                     type="email"
-                                                    placeholder="your.email@example.com"
+                                                    placeholder="max.mustermann@muster.com"
                                                     className="bg-gray-800/50 border-red-500/20 text-white"
                                                     {...field}
                                                 />
@@ -197,7 +197,7 @@ ${values.message}
                                             >
                                                 <FormControl>
                                                     <SelectTrigger className="bg-gray-800/50 border-red-500/20 text-white">
-                                                        <SelectValue placeholder="Select a subject" />
+                                                        <SelectValue placeholder="Wähle einen Betreff" />
                                                     </SelectTrigger>
                                                 </FormControl>
                                                 <SelectContent>
@@ -227,7 +227,7 @@ ${values.message}
                                             <FormLabel className="text-white">Nachricht</FormLabel>
                                             <FormControl>
                                                 <Textarea
-                                                    placeholder="How can we help you?"
+                                                    placeholder="Wie können wir Ihnen helfen?"
                                                     className="bg-gray-800/50 border-red-500/20 text-white min-h-[150px]"
                                                     {...field}
                                                 />
