@@ -10,7 +10,7 @@ export default function DataProtection() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
             {/* Hero Section */}
             <div className="text-center mb-16">
-                <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                <h1 className="text-3xl md:text-5xl font-bold text-white mb-6">
                     Datenschutzerklärung
                 </h1>
                 <p className="text-gray-300 text-lg max-w-3xl mx-auto">
