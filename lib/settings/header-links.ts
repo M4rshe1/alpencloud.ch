@@ -51,7 +51,7 @@ export const HEADER_LINKS: HeaderLink[] = [
                 title: "Datenschutz",
                 description: "Erfahren Sie mehr über unsere Datenschutzrichtlinien",
                 icon: Shield,
-                href: "/privacy"
+                href: "/dataprotection"
             },
             {
                 title: "Impressum",
