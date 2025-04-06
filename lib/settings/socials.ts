@@ -4,7 +4,7 @@ import {Globe} from "lucide-react";
 export const SOCIALS = [
     {
         icon: IconBrandGithub,
-        link: "https://github.com/m4rshe1",
+        link: "https://github.com/alpencloud-ch",
     },
     {
         icon: Globe,

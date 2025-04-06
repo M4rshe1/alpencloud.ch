@@ -102,6 +102,9 @@ export function PlanCombiner() {
     }, [selectedPackages]);
 
     const handleSendInquiry = () => {
+        if (selectedPackages.length === 0) {
+            return;
+        }
         plausible("send_inquiry", {
             props: {
                 totalMonthlyCost: totalMonthlyCost,
