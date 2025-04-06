@@ -14,7 +14,7 @@ export default function DataProtection() {
                     Datenschutzerklärung
                 </h1>
                 <p className="text-gray-300 text-lg max-w-3xl mx-auto">
-                    Datenschutz ist uns wichtig – daher erheben oder speichern wir keine personenbezogenen Daten.
+                    Datenschutz ist uns wichtig – daher speichern wir nur IP-Adressen und keine personenspezifischen Daten.
                 </p>
             </div>
 
@@ -32,22 +32,19 @@ export default function DataProtection() {
 
                 <section className="p-6 rounded-2xl bg-gray-800/50 backdrop-blur-lg border border-red-500/20 shadow-md">
                     <h2 className="text-2xl font-semibold text-white mb-4">
-                        2. Keine Speicherung personenbezogener Daten
+                        2. Speicherung von IP-Adressen
                     </h2>
                     <p className="text-gray-400">
-                        Beim Besuch unserer Website speichern wir keine personenbezogenen Daten wie Name, Adresse,
-                        Telefonnummer oder IP-Adresse. Auch Formulare werden nicht serverseitig gespeichert –
-                        stattdessen öffnen sie lediglich Ihr E-Mail-Programm.
+                        Beim Besuch unserer Website speichern wir Ihre IP-Adresse. Weitere personenbezogene Daten wie Name, Adresse oder Telefonnummer werden nicht gespeichert. Auch Formulare werden nicht serverseitig gespeichert – stattdessen öffnen sie lediglich Ihr E-Mail-Programm.
                     </p>
                 </section>
 
                 <section className="p-6 rounded-2xl bg-gray-800/50 backdrop-blur-lg border border-red-500/20 shadow-md">
                     <h2 className="text-2xl font-semibold text-white mb-4">
-                        3. Keine Cookies, kein Tracking
+                        3. Tracking- und Analysetools
                     </h2>
                     <p className="text-gray-400">
-                        Unsere Website verwendet keine Cookies, Tracking-Technologien oder externe Analyse-Tools (wie
-                        Google Analytics). Ihr Besuch auf unserer Seite bleibt vollständig anonym.
+                        Unsere Website verwendet Tracking- und Analysetools, um die Nutzung unserer Website zu analysieren und zu verbessern. Diese Tools können Informationen wie Ihre IP-Adresse, den verwendeten Browser, die Verweildauer auf der Website und die besuchten Seiten erfassen.
                     </p>
                 </section>
 
@@ -67,7 +64,7 @@ export default function DataProtection() {
                         5. Ihre Rechte
                     </h2>
                     <p className="text-gray-400">
-                        Da wir keine personenbezogenen Daten speichern, entfällt die Notwendigkeit eines Auskunfts- oder
+                        Da wir keine weiteren personenbezogenen Daten speichern, entfällt die Notwendigkeit eines Auskunfts- oder
                         Löschungsantrags. Sollten Sie dennoch Fragen zum Datenschutz haben, kontaktieren Sie uns gerne:
                         <br/><br/>
                         <a href="mailto:support@alpencloud.ch" className="text-red-400 hover:underline">
