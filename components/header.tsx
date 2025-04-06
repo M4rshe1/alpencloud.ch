@@ -14,6 +14,7 @@ import {
 import {HEADER_LINKS, HeaderLink} from "@/lib/settings/header-links";
 import Banners from "@/components/banners";
 import {cn} from "@/lib/utils";
+import Image from "next/image";
 
 const Header = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -24,8 +25,14 @@ const Header = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16">
                     <div className="flex items-center">
-                        <Link href="/" className="text-xl font-bold text-red-400">
-                            AlpenCloud
+                        <Link href="/" className="text-xl font-bold text-red-400 flex items-center gap-2">
+                            <Image
+                                src="/images/logo-inline.png"
+                                alt="Logo"
+                                width={512}
+                                height={512}
+                                className="h-20 w-auto"
+                            />
                         </Link>
                     </div>
 
