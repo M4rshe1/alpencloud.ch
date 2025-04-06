@@ -44,7 +44,7 @@ export function PlanCombiner() {
                     plausible("select_package", {
                         props: {
                             service: service.name,
-                            package: selectedPkg.name,
+                            package: `${selectedPackageName} (${service.name})`,
                         },
                     });
                     return [
