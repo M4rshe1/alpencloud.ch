@@ -1,10 +1,16 @@
 "use client";
 
-import {useMemo, useState} from "react";
-import {Service, ServicePackage, SERVICES} from "@/lib/settings/services";
-import {Select, SelectContent, SelectItem, SelectTrigger,} from "@/components/ui/select";
-import {Button} from "@/components/ui/button"; // Import Button component
-import {RotateCcw, Send} from "lucide-react"; // Import an icon for the button
+import { useMemo, useState } from "react";
+import { Service, ServicePackage, SERVICES } from "@/lib/settings/services";
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+} from "@/components/ui/select";
+import { Button } from "@/components/ui/button"; // Import Button component
+import { RotateCcw, Send } from "lucide-react"; // Import an icon for the button
+import { usePlausible } from "next-plausible";
 
 // Interface remains the same
 interface SelectedPackage extends ServicePackage {
@@ -16,9 +22,10 @@ interface SelectedPackage extends ServicePackage {
 const NONE_VALUE = "__NONE__";
 
 export function PlanCombiner() {
-    const [selectedPackages, setSelectedPackages] = useState<SelectedPackage[]>(
-        [],
-    );
+    const [selectedPackages, setSelectedPackages] = useState<
+        SelectedPackage[]
+    >([]);
+    const plausible = usePlausible();
 
     // Unified handler for Select changes
     const handleSelectChange = (value: string, service: Service) => {
@@ -34,6 +41,12 @@ export function PlanCombiner() {
                     (pkg) => pkg.name === selectedPackageName,
                 );
                 if (selectedPkg) {
+                    plausible("select_package", {
+                        props: {
+                            service: service.name,
+                            package: selectedPkg.name,
+                        },
+                    });
                     return [
                         ...otherPackages,
                         {
@@ -51,6 +64,7 @@ export function PlanCombiner() {
     // --- Reset Handler ---
     const handleReset = () => {
         setSelectedPackages([]);
+        plausible("reset_selection");
     };
 
     const {
@@ -88,6 +102,14 @@ export function PlanCombiner() {
     }, [selectedPackages]);
 
     const handleSendInquiry = () => {
+        plausible("send_inquiry", {
+            props: {
+                totalMonthlyCost: totalMonthlyCost,
+                totalYearlyCost: totalYearlyCost,
+                totalSetupFees: totalSetupFees,
+                totalOneTimeCosts: totalOneTimeCosts,
+            },
+        });
         const recipientEmail = "info@alpencloud.ch";
 
         const subject = "Anfrage: Individuelles Service-Paket";
@@ -153,14 +175,16 @@ export function PlanCombiner() {
 
     return (
         <div>
-            <h2 className="text-3xl font-bold text-white text-center mb-10" id={"calculator"}>
+            <h2
+                className="text-3xl font-bold text-white text-center mb-10"
+                id={"calculator"}
+            >
                 Stellen Sie Ihre Pläne zusammen
             </h2>
             <p className="text-center text-gray-400 mb-12 max-w-2xl mx-auto">
                 Wählen Sie pro Service-Kategorie eine Paketoption aus dem
                 Dropdown-Menü, um Ihr individuelles Bundle zu erstellen.
             </p>
-
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
                 {" "}
                 {SERVICES.map((service) => {
@@ -177,7 +201,7 @@ export function PlanCombiner() {
                             className="p-6 rounded-xl bg-gray-800/50 backdrop-blur-lg border border-red-500/20 shadow-[0_0_15px_rgba(220,38,38,0.2)] relative flex flex-col h-full"
                         >
                             <h3 className="text-xl font-semibold text-white mb-4 flex items-center">
-                                <service.icon className="w-5 h-5 mr-2 text-red-400"/>
+                                <service.icon className="w-5 h-5 mr-2 text-red-400" />
                                 {service.name}
                             </h3>
                             <div className="mt-auto">
@@ -189,8 +213,7 @@ export function PlanCombiner() {
                                     value={selectValue}
                                     onValueChange={(value) => handleSelectChange(value, service)}
                                 >
-                                    <SelectTrigger
-                                        className="w-full p-3 bg-gray-900/80 border border-gray-800 rounded-md text-white focus:border-red-400">
+                                    <SelectTrigger className="w-full p-3 bg-gray-900/80 border border-gray-800 rounded-md text-white focus:border-red-400">
                     <span className="truncate">
                       {selectValue === NONE_VALUE
                           ? "-- Keine Auswahl --"
@@ -198,9 +221,7 @@ export function PlanCombiner() {
                     </span>
                                     </SelectTrigger>
                                     <SelectContent>
-                                        <SelectItem value={NONE_VALUE}>
-                                            -- Keine Auswahl --
-                                        </SelectItem>
+                                        <SelectItem value={NONE_VALUE}>-- Keine Auswahl --</SelectItem>
                                         {service.packages.map((pkg) => (
                                             <SelectItem key={pkg.name} value={pkg.name}>
                                                 {pkg.name} (
@@ -229,7 +250,7 @@ export function PlanCombiner() {
                         onClick={handleReset}
                         className="bg-red-600 hover:bg-red-700 text-white"
                     >
-                        <RotateCcw className="mr-2 h-4 w-4"/>
+                        <RotateCcw className="mr-2 h-4 w-4" />
                         Auswahl zurücksetzen
                     </Button>
                 </div>
@@ -274,8 +295,7 @@ export function PlanCombiner() {
                         </h4>
 
                         {(totalSetupFees > 0 || totalOneTimeCosts > 0) && (
-                            <div
-                                className="flex justify-between text-lg text-gray-300 border-b border-gray-800 pb-2 mb-2">
+                            <div className="flex justify-between text-lg text-gray-300 border-b border-gray-800 pb-2 mb-2">
                 <span className="font-medium text-white">
                   Einmalige Kosten gesamt:
                 </span>
@@ -314,22 +334,20 @@ export function PlanCombiner() {
                 {formatCurrency(totalYearlyCost)} / Jahr
               </span>
                         </div>
-                        <div
-                            className={`flex items-center justify-end`}
-                        >
+                        <div className={`flex items-center justify-end`}>
                             <Button
                                 variant="destructive"
                                 onClick={handleSendInquiry}
                                 className="bg-red-600 hover:bg-red-700 text-white mt-6 flex items-center justify-center"
                             >
-                                <Send className={"mr-2 h-4 w-4"}/>
+                                <Send className={"mr-2 h-4 w-4"} />
                                 Unverbindliche Anfrage senden
                             </Button>
                         </div>
                         <p className="text-sm text-gray-400 pt-4 text-center">
                             Hinweis: Monatliche Kosten sind Schätzungen (inkl. anteiliger
-                            Jahrespläne). Jährliche Kosten beinhalten Rabatte. Alle Preise
-                            in CHF.
+                            Jahrespläne). Jährliche Kosten beinhalten Rabatte. Alle Preise in
+                            CHF.
                         </p>
                     </div>
                 </div>

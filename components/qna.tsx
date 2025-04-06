@@ -6,7 +6,7 @@ import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { atomDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 const QuestionAndAnswers = () => {
     return (
