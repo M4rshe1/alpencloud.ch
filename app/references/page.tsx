@@ -1,8 +1,13 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import {REFERENCES} from "@/lib/settings/references";
+import type {Metadata} from "next";
+
+export const metadata: Metadata = {
+    title: 'Alpencloud - Referenzen',
+    description: 'Referenzen von Alpencloud',
+}
+
 
 const Page = () => {
     return (

@@ -1,5 +1,5 @@
 import {IconBrandWordpress, IconWorldWww} from "@tabler/icons-react";
-import {BookOpen, Mail, Shield, Wrench} from "lucide-react";
+import {Mail, Shield, Wrench} from "lucide-react";
 
 export interface ServicePackage {
     name: string;

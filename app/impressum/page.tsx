@@ -1,5 +1,9 @@
-﻿"use client";
+﻿import type {Metadata} from "next";
 
+export const metadata: Metadata = {
+    title: 'Alpencloud - Impressum',
+    description: 'Impressum von Alpencloud',
+}
 
 export default function Impressum() {
     return (

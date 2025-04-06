@@ -1,6 +1,12 @@
 import {Clock, Code, Cpu, Globe2, HeartHandshake, Rocket, Server, Shield, Users, Zap} from "lucide-react"
 import Link from "next/link"
 import WhyBanner from "@/components/why-banner";
+import type {Metadata} from "next";
+
+export const metadata: Metadata = {
+    title: 'Alpencloud - Wieso AlpenCloud?',
+    description: 'Erfahren Sie, warum AlpenCloud die beste Wahl für Ihr Hosting ist. Wir bieten Schweizer Qualität, innovative Technologie und persönlichen Support.',
+}
 
 const Page = () => {
     return (
