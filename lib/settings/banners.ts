@@ -7,10 +7,10 @@ export interface Banners {
 
 
 export const BANNERS: Banners[] = [
-    {
-        title: "⛔ Die Seite ist in Entwicklung. Wir nehmen aktuell keine Bestellungen an.",
-        color: "red",
-        link: "/",
-        linkText: "Zurück zur Startseite",
-    },
+    // {
+    //     title: "⛔ Die Seite ist in Entwicklung. Wir nehmen aktuell keine Bestellungen an.",
+    //     color: "red",
+    //     link: "/",
+    //     linkText: "Zurück zur Startseite",
+    // },
 ]
