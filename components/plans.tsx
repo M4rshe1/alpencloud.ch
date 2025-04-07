@@ -118,7 +118,7 @@ const Plan = ({plan, annual, oneTime, yearly}: { plan: ServicePackage, annual: b
                 </div>
             )}
             <Link
-                href="mailto:support@alpencloud.ch"
+                href="mailto:sales@alpencloud.ch"
                 className="w-full py-3 bg-red-600 hover:bg-red-700 rounded-lg text-white font-semibold transition-all mt-auto">
                 Anfrage senden
             </Link>
