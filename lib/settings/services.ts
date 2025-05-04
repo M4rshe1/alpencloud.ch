@@ -9,11 +9,13 @@ export interface ServicePackage {
     mostPopular?: boolean;
     annualDiscount?: number;
     setupFee?: number;
+    small?: string;
 }
 
 export interface Service {
     name: string;
     id: string;
+    small?: string;
     description: string;
     icon: any;
     type: "monthly" | "yearly" | "one-time";
@@ -90,7 +92,7 @@ export const SERVICES: Service[] = [
             {
                 name: "Basic",
                 price: 12,
-                setupFee: 19,
+                setupFee: 25,
                 mostPopular: true,
                 description: "Ideal für Einzelpersonen und kleine Unternehmen.",
                 features: [
@@ -178,42 +180,52 @@ export const SERVICES: Service[] = [
         icon: IconWorldWww,
         id: "domains",
         type: "yearly",
+        small: "Jährliche Gebühren für die Domainregistrierung sind nicht enthalten.",
         packages: [
             {
                 name: "Basic",
-                price: 20,
-                setupFee: 15,
+                price: 75,
+                setupFee: 25,
                 mostPopular: true,
                 description: "Ideal für kleine Websites.",
                 features: [
-                    "1 Domain Registration",
-                    "Free DNS Management",
-                    "Email Forwarding"
-                ]
+                    "Domain Registration",
+                    "Email Forwarding",
+                    "URL Forwarding",
+                    "5 DNS Änderungen pro Jahr",
+                ],
+                small: "Pro Domain",
             },
             {
                 name: "Business",
-                price: 80,
-                setupFee: 30,
+                price: 150,
+                setupFee: 50,
                 description: "Für mittelgrosse Websites.",
                 features: [
-                    "5 Domain Registrations",
+                    "Domain Registrations",
                     "Free DNS Management",
                     "Email Forwarding",
-                    "URL Forwarding"
-                ]
+                    "URL Forwarding",
+                    "Domain Locking",
+                    "DDOS Protection",
+                    "15 DNS Änderungen pro Jahr",
+                ],
+                small: "Pro Domain",
             },
             {
                 name: "Enterprise",
                 price: 400,
-                setupFee: 50,
+                setupFee: 100,
                 description: "Für grosse Websites und Unternehmen.",
                 features: [
-                    "25 Domain Registrations",
+                    "Domain Registrations",
                     "Free DNS Management",
                     "Email Forwarding",
                     "URL Forwarding",
-                ]
+                    "Domain Locking",
+                    "DDOS Protection",
+                ],
+                small: "Pro Domain",
             }
         ]
     },

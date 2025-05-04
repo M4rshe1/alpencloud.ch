@@ -45,7 +45,7 @@ export const Plans = ({service, annual}: { service: Service, annual: boolean }) 
                 </div>
             )}
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20"
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8"
                  style={{gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))'}}>
                 {
                     service.packages.map((plan) => (
@@ -60,6 +60,11 @@ export const Plans = ({service, annual}: { service: Service, annual: boolean }) 
                     ))
                 }
             </div>
+            {service.small && (
+                <div className="text-sm text-gray-300 mb-20">
+                    <span className="font-medium">{service.small}</span>
+                </div>
+            )}
         </div>
     )
 }
@@ -112,6 +117,13 @@ const Plan = ({plan, annual, oneTime, yearly}: { plan: ServicePackage, annual: b
                     ))
                 }
             </ul>
+            {
+                plan.small && (
+            <div className="text-sm text-gray-300 mb-4">
+                <span className="font-medium">{plan.small}</span>
+            </div>
+                )
+            }
             {!oneTime && plan.setupFee && (
                 <div className="text-sm text-gray-300 mb-4">
                     <span className="font-medium">Einrichtungsgebühr:</span> {plan.setupFee} CHF
